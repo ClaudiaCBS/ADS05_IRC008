@@ -372,7 +372,7 @@ upstream frontend{
 }
 
 server {
-	listen 80;
+	listen 192.168.0.100; # Endereço IP do servidor na VPN
 
 
 	location / {
@@ -424,24 +424,16 @@ A imagem oficial do **MySQL** foi utilizada para criar o contêiner do banco de 
 - Inserir as seguintes informações no arquivo `docker-compose.yml`
 
 ```cmd
-version: '3.8'
-
-services:
-  mysql:
-    image: mysql:8.0-oracle  # Imagem mais leve do mysql
-    container_name: Mysql  # Nome do container
-    environment:  # Váriaveis de ambiente mysql
-      MYSQL_ROOT_PASSWORD: "fatec"  # Senha do usuário root (séra criado junto do container)
-      MYSQL_USER: "root"  # Nome de usuário caso necessário
-      MYSQL_PASSWORD: "fatec"  #  Senha para o usuário
-      MYSQL_DATABASE: "redes"  # Nome para uma database
-    ports:
-      - "3306:3306"  # Porta do host e porta do container
-    volumes:
-      - mysql_data:/var/lib/mysql # Garante que os dados sejam persistentes
-
-volumes:
-  mysql_data:
+  services:
+    mysql:
+        image: mysql:8
+        container_name: "mysql-2"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${BD_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DATABASE}
+        ports:
+            - ${BD_PORT}
+        restart: always
 ```
 
 ### 6.3. Rodar o docker-compose
