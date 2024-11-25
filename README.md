@@ -99,16 +99,16 @@ Para iniciar, foi criada uma instância dentro do **nível gratuito da AWS**, ut
 - Primeiro, acessei o **AWS Management Console** e naveguei até a seção **EC2** (Elastic Compute Cloud).
 - Em seguida, cliquei em **Launch Instance** para iniciar a criação de uma nova máquina virtual.
 
-2.2. **Atribuindo Nome e Tags:**
+  2.2. **Atribuindo Nome e Tags:**
 
 - Criei 3 máquinas virtuais com os seguintes nomes: frontEnd1 (onde está o projeto web), backEnd (onde está o Docker e o banco de dados) e loadBalance (onde está a configuração do Load Balancer, Proxy Reverso e VPN).
 
-2.3. **Escolha da Amazon Machine Image (AMI):**
+  2.3. **Escolha da Amazon Machine Image (AMI):**
 
 - Selecionei a imagem **Ubuntu**, adequada para servidores Linux, garantindo que a instância fosse compatível com o **nível gratuito** da AWS.
 - A instância escolhida foi a **t2.micro**, que oferece 1 vCPU e 1GB de memória RAM, ideal para pequenas aplicações e testes.
 
-2.4. **Key pair (login):**
+  2.4. **Key pair (login):**
 
 - Para garantir uma conexão segura via SSH com a máquina virtual, a AWS utiliza um par de chaves criptográficas (Key Pair), composto por uma chave pública e uma chave privada. A chave pública é armazenada na instância, enquanto a chave privada é usada pelo usuário para autenticação.
 - Para criar e configurar o Key Pair selecionei a opção Create new key pair para gerar um novo par de chaves, necessário para o login via SSH.
@@ -118,12 +118,12 @@ Para iniciar, foi criada uma instância dentro do **nível gratuito da AWS**, ut
 - Após revisar as configurações, cliquei em Create key pair para gerar o arquivo da chave privada.
 - Salvamento do arquivo chaveRedesAWS.pem e no meu sistema local. Esse arquivo será usado posteriormente para autenticar o login na instância AWS através do SSH.
 
-2.5. **Configuração de Rede:**
+  2.5. **Configuração de Rede:**
 
 - Mantive as configurações de rede padrão da AWS, utilizando a **VPC (Virtual Private Cloud)** padrão e uma **subnet** disponível, assegurando que a instância tivesse acesso público para fins de conectividade.
 - Selecionei as seguintes opções para permitir o tráfego de rede: HTTPS e HTTP.
 
-2.6. **Configuração de Armazenamento:**
+  2.6. **Configuração de Armazenamento:**
 
 - Configurei o volume de armazenamento em 8GB, utilizando o **EBS (Elastic Block Store)** com o tipo **General Purpose (SSD)**, garantindo um bom desempenho com baixo custo, ideal para um ambiente de desenvolvimento.
 
@@ -557,8 +557,8 @@ Neste projeto, a configuração foi feita utilizando OpenVPN na instância EC2 d
 - Fazer o download da chaveVPN e do arquivo de configuração do client1.conf.
 
 ```cmd
-  scp -i <arquivo.pem> ubuntu@3.89.212.241:/etc/openvpn/chavevpn /caminho/local/
-  scp -i <arquivo.pem> ubuntu@3.89.212.241:/etc/openvpn/client1.conf /caminho/local/
+  scp -i <chaveRedesAWS.pem> ubuntu@3.89.212.241:/etc/openvpn/chavevpn /caminho/local/
+  scp -i <chaveRedesAWS.pem> ubuntu@3.89.212.241:/etc/openvpn/client1.conf /caminho/local/
 ```
 
 ### 7.6. Iniciar o servidor VPN
