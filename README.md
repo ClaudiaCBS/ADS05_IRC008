@@ -4,9 +4,7 @@
 
 Repositório para apresentar o projeto desenvolvido para a disciplina Redes de Computadores do 5ADS da FATEC.
 
-## <a href='http://lattes.cnpq.br/4723982029081265' target="Jean"> Prof. Jean Carlos Lourenço Costa </a> 
-
-
+## <a href='http://lattes.cnpq.br/4723982029081265' target="Jean"> Prof. Jean Carlos Lourenço Costa </a>
 
 # Criação de Infraestrutura de Rede para a Empresa XPTO
 
@@ -20,7 +18,7 @@ Desenvolver uma infraestrutura de rede para a empresa fictícia XPTO, que atenda
 **1. Load Balancer:**
 Implementar um sistema de balanceamento de carga utilizando, no mínimo, 3 máquinas para distribuir o tráfego.
 
-**2. Proxy Reverso:** 
+**2. Proxy Reverso:**
 Configurar uma máquina para atuar como proxy reverso, gerenciando as requisições dos usuários para os servidores apropriados.
 
 **3. Banco de Dados:**
@@ -34,19 +32,14 @@ Utilizar o Docker para criar os servidores web e o banco de dados, garantindo po
 
 <br>
 
-
 ### :spiral_calendar: Data das Validações
 
-| Validação | Previsão de entrega | Status                            |
-| :----: | :-------------------------------: | :-------------------------------- |
-|   01   |     04/10/2024 - 08/10/2024      | :white_check_mark: Concluído      |
-|   02   |     25/10/2024 - 29/10/2024      | :white_check_mark: Concluído |
-|   03   |     22/11/2024 - 26/11/2024      | :white_check_mark: Concluído |
-|   04   |     06/12/2024 - 10/12/2024 e 13/12/2024      | :construction: Em desenvolvimento |
-
-
-
-
+| Validação |         Previsão de entrega          | Status                            |
+| :-------: | :----------------------------------: | :-------------------------------- |
+|    01     |       04/10/2024 - 08/10/2024        | :white_check_mark: Concluído      |
+|    02     |       25/10/2024 - 29/10/2024        | :white_check_mark: Concluído      |
+|    03     |       22/11/2024 - 26/11/2024        | :white_check_mark: Concluído      |
+|    04     | 06/12/2024 - 10/12/2024 e 13/12/2024 | :construction: Em desenvolvimento |
 
 # :rocket: Tecnologias Utilizadas
 
@@ -86,50 +79,53 @@ Para o desenvolvimento deste projeto foram utilizadas as seguintes ferramentas e
   </tbody>
 </table>
 
-
 # :rocket: Requisitos do Trabalho
 
 ## 1. Arquitetura da Rede
 
 - Desenhar a topologia da rede, identificando as máquinas, conexões, e
-fluxos de dados.
+  fluxos de dados.
 - Detalhar o uso do load balancer, proxy reverso e banco de dados.
 
 <p align="center">
       <img src="/docs/02_topologia_rede.png" alt="Topologia da Rede">
-
-
 
 ## 2. Configuração da Máquina Virtual na AWS
 
 Para iniciar, foi criada uma instância dentro do **nível gratuito da AWS**, utilizando o sistema operacional **Ubuntu**. A configuração inicial seguiu os seguintes passos:
 
 2.1. **Acesso ao AWS Management Console:**
-   - Primeiro, acessei o **AWS Management Console** e naveguei até a seção **EC2** (Elastic Compute Cloud).
-   - Em seguida, cliquei em **Launch Instance** para iniciar a criação de uma nova máquina virtual.
+
+- Primeiro, acessei o **AWS Management Console** e naveguei até a seção **EC2** (Elastic Compute Cloud).
+- Em seguida, cliquei em **Launch Instance** para iniciar a criação de uma nova máquina virtual.
 
 2.2. **Atribuindo Nome e Tags:**
-   - Criei 3 máquinas virtuais com os seguintes nomes: frontEnd1 (onde está o projeto web), backEnd (onde está o Docker e o banco de dados) e loadBalance (onde está a configuração do Load Balancer, Proxy Reverso e VPN).
+
+- Criei 3 máquinas virtuais com os seguintes nomes: frontEnd1 (onde está o projeto web), backEnd (onde está o Docker e o banco de dados) e loadBalance (onde está a configuração do Load Balancer, Proxy Reverso e VPN).
 
 2.3. **Escolha da Amazon Machine Image (AMI):**
-   - Selecionei a imagem **Ubuntu**, adequada para servidores Linux, garantindo que a instância fosse compatível com o **nível gratuito** da AWS.
-   - A instância escolhida foi a **t2.micro**, que oferece 1 vCPU e 1GB de memória RAM, ideal para pequenas aplicações e testes.
+
+- Selecionei a imagem **Ubuntu**, adequada para servidores Linux, garantindo que a instância fosse compatível com o **nível gratuito** da AWS.
+- A instância escolhida foi a **t2.micro**, que oferece 1 vCPU e 1GB de memória RAM, ideal para pequenas aplicações e testes.
 
 2.4. **Key pair (login):**
-   - Para garantir uma conexão segura via SSH com a máquina virtual, a AWS utiliza um par de chaves criptográficas (Key Pair), composto por uma chave pública e uma chave privada. A chave pública é armazenada na instância, enquanto a chave privada é usada pelo usuário para autenticação.
-   - Para criar e configurar o Key Pair selecionei a opção Create new key pair para gerar um novo par de chaves, necessário para o login via SSH.
-   - Nome do par de chaves que estou usando neste projeto é chaveRedesAWS.
-   - Escolhi o tipo RSA, que é um padrão amplamente utilizado para criptografia e autenticação.
-   - Optei pelo formato PEM (Privacy Enhanced Mail), que é o formato necessário para se conectar via SSH em sistemas Unix/Linux e também compatível com algumas ferramentas no Windows.
-   - Após revisar as configurações, cliquei em Create key pair para gerar o arquivo da chave privada.
-   - Salvamento do arquivo chaveRedesAWS.pem e no meu sistema local. Esse arquivo será usado posteriormente para autenticar o login na instância AWS através do SSH.
+
+- Para garantir uma conexão segura via SSH com a máquina virtual, a AWS utiliza um par de chaves criptográficas (Key Pair), composto por uma chave pública e uma chave privada. A chave pública é armazenada na instância, enquanto a chave privada é usada pelo usuário para autenticação.
+- Para criar e configurar o Key Pair selecionei a opção Create new key pair para gerar um novo par de chaves, necessário para o login via SSH.
+- Nome do par de chaves que estou usando neste projeto é chaveRedesAWS.
+- Escolhi o tipo RSA, que é um padrão amplamente utilizado para criptografia e autenticação.
+- Optei pelo formato PEM (Privacy Enhanced Mail), que é o formato necessário para se conectar via SSH em sistemas Unix/Linux e também compatível com algumas ferramentas no Windows.
+- Após revisar as configurações, cliquei em Create key pair para gerar o arquivo da chave privada.
+- Salvamento do arquivo chaveRedesAWS.pem e no meu sistema local. Esse arquivo será usado posteriormente para autenticar o login na instância AWS através do SSH.
 
 2.5. **Configuração de Rede:**
-   - Mantive as configurações de rede padrão da AWS, utilizando a **VPC (Virtual Private Cloud)** padrão e uma **subnet** disponível, assegurando que a instância tivesse acesso público para fins de conectividade.
-   - Selecionei as seguintes opções para permitir o tráfego de rede: HTTPS e HTTP.
+
+- Mantive as configurações de rede padrão da AWS, utilizando a **VPC (Virtual Private Cloud)** padrão e uma **subnet** disponível, assegurando que a instância tivesse acesso público para fins de conectividade.
+- Selecionei as seguintes opções para permitir o tráfego de rede: HTTPS e HTTP.
 
 2.6. **Configuração de Armazenamento:**
-   - Configurei o volume de armazenamento em 8GB, utilizando o **EBS (Elastic Block Store)** com o tipo **General Purpose (SSD)**, garantindo um bom desempenho com baixo custo, ideal para um ambiente de desenvolvimento.
+
+- Configurei o volume de armazenamento em 8GB, utilizando o **EBS (Elastic Block Store)** com o tipo **General Purpose (SSD)**, garantindo um bom desempenho com baixo custo, ideal para um ambiente de desenvolvimento.
 
 ---
 
@@ -137,72 +133,76 @@ Com a instância devidamente configurada, ela está preparada para receber as ap
 
 ---
 
-
 ## 3. Bitvise
 
 Com a instância configurada e acessível, instalei os seguintes serviços necessários:
 
 3.1. **Servidor WWW – Apache:**
-   ```cmd
-   sudo apt update
-   sudo apt install apache2
-   ```
-   - Verificar o funcionamento acessando o endereço IPv4 público da instância:
 
-   ```cmd
-   sudo systemctl status apache2
-   ```
+```cmd
+sudo apt update
+sudo apt install apache2
+```
+
+- Verificar o funcionamento acessando o endereço IPv4 público da instância:
+
+```cmd
+sudo systemctl status apache2
+```
 
 3.2. **Servidor de Banco de Dados – MySQL/MariaDB:**
-   ```cmd
-   sudo apt install default-mysql-server
-   ```
-   - Após a instalação, acessei o MySQL:
-   
-   ```cmd
-   sudo mysql -u root
-   ```
 
-   - Adicionei uma senha para o usuário root e criei um banco de dados:
+```cmd
+sudo apt install default-mysql-server
+```
 
-  ```cmd
-   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'senha-de-root';
+- Após a instalação, acessei o MySQL:
 
-   CREATE DATABASE nome-do-banco;
+```cmd
+sudo mysql -u root
+```
 
-   exit;
-   ```
-   
+- Adicionei uma senha para o usuário root e criei um banco de dados:
+
+```cmd
+ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'senha-de-root';
+
+ CREATE DATABASE nome-do-banco;
+
+ exit;
+```
 
 3.3. **Outros Serviços:**
-   - **HTOP:** Para monitoramento de recursos.
-     ```cmd
-     sudo apt install htop
-     ```
-   - **Net Tools:** Para ferramentas de rede essenciais.
-     ```cmd
-     sudo apt install net-tools
-     ```
-   - **Git:** Para controle de versão e deploy da aplicação.
-     ```cmd
-     sudo apt install git
-     ```
-   - **NodeJs:** Para rodar o JavaScript no backend.
-     ```cmd
-     sudo apt install nodejs
-     ```
-   - **npm:** Para o gerenciamento de pacotes do Node.js.
-     ```cmd
-     sudo apt install npm
-     ```
-   - **NestJs:** Para utilizar os comandos do NestJs no terminal.
-     ```cmd
-     npm i -g @nestjs/cli
-     ```
+
+- **HTOP:** Para monitoramento de recursos.
+  ```cmd
+  sudo apt install htop
+  ```
+- **Net Tools:** Para ferramentas de rede essenciais.
+  ```cmd
+  sudo apt install net-tools
+  ```
+- **Git:** Para controle de versão e deploy da aplicação.
+  ```cmd
+  sudo apt install git
+  ```
+- **NodeJs:** Para rodar o JavaScript no backend.
+  ```cmd
+  sudo apt install nodejs
+  ```
+- **npm:** Para o gerenciamento de pacotes do Node.js.
+  ```cmd
+  sudo apt install npm
+  ```
+- **NestJs:** Para utilizar os comandos do NestJs no terminal.
+  ```cmd
+  npm i -g @nestjs/cli
+  ```
 
 ## 4. Rodando o Projeto
 
 ### 4.1. Clonar o projeto
+
 ```cmd
 git clone https://github.com/ClaudiaCBS/ADS05_IRC008.git
 ```
@@ -210,11 +210,13 @@ git clone https://github.com/ClaudiaCBS/ADS05_IRC008.git
 ### 4.2. FrontEnd
 
 - Verifique se a URL da API no arquivo api.tsx corresponde à URL pública da instância:
+
 ```cmd
 sudo nano Projeto-de-Sistemas-Operacionais/frontend/src/services/api.tsx
 ```
 
 - Edite conforme necessário:
+
 ```cmd
 import axios from "axios";
 
@@ -224,6 +226,7 @@ export default api
 ```
 
 - Instalar as dependências do frontEnd.
+
 ```cmd
 cd Projeto-de-Sistemas-Operacionais/frontend
 npm install
@@ -247,11 +250,13 @@ export interface JwtPayload {
 ```
 
 - Liberar o módulo de reescrita do Apache:
+
 ```cmd
 a2enmod rewrite
 ```
 
 - Realizar o build do projeto:
+
 ```cmd
 npm run build
 ```
@@ -264,6 +269,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
 - Editar o arquivo conforme abaixo:
+
 ```cmd
     <VirtualHost *:80>
       ServerAdmin webmaster@localhost
@@ -287,6 +293,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
 - Criar o arquivo .htaccess na pasta /var/www/dist
+
 ```cmd
     <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -300,6 +307,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
 - Reinicie o Apache para aplicar as configurações:
+
 ```cmd
     sudo systemctl restart apache2
 ```
@@ -307,6 +315,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ### 4.3. BackEnd
 
 - Instalar as dependências do backEnd:
+
 ```cmd
 cd Projeto-de-Sistemas-Operacionais/backend
 npm install
@@ -314,14 +323,18 @@ npm install --save @nestjs/typeorm typeorm mysql2
 
 ```
 
-- Criar e configurar o arquivo .env: 
+- Criar e configurar o arquivo .env:
+
 ```cmd
 sudo touch .env
 ```
+
 - Conteúdo:
+
 ```cmd
 sudo nano .env
 ```
+
 ```cmd
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -331,7 +344,7 @@ DATABASE=nome-do-banco-de-dados
 TOKEN_JWT=coloque-qualquer-coisa
 ```
 
-- Inicie o backEnd: 
+- Rodar o backEnd:
 
 ```cmd
 nest start
@@ -350,6 +363,7 @@ nest start
 ```
 
 - Configurar o arquivo do Load Balance e Proxy Reverso:
+
 ```cmd
 upstream frontend{
 	server ip_publico1;
@@ -359,7 +373,7 @@ upstream frontend{
 
 server {
 	listen 80;
-	
+
 
 	location / {
 		proxy_pass http://frontend;
@@ -381,6 +395,7 @@ server {
 ```
 
 - Reiniciar o NGINX para aplicar as configurações:
+
   ```cmd
   sudo systemctl restart nginx
   ```
@@ -388,7 +403,7 @@ server {
 ## 6. Docker
 
 Para este projeto, utilizei o Docker para configurar e gerenciar o banco de dados de forma prática e eficiente. Com o uso de contêineres, foi possível garantir a portabilidade e a facilidade na implantação, eliminando preocupações relacionadas à compatibilidade entre ambientes.  
-A imagem oficial do **MySQL** foi utilizada para criar o contêiner do banco de dados. Todas as configurações, como nome do banco, usuário e senha, foram definidas no arquivo `docker-compose.yml`, permitindo uma inicialização automatizada e padronizada.  
+A imagem oficial do **MySQL** foi utilizada para criar o contêiner do banco de dados. Todas as configurações, como nome do banco, usuário e senha, foram definidas no arquivo `docker-compose.yml`, permitindo uma inicialização automatizada e padronizada.
 
 ### 6.1. Instalar Docker e Docker Compose
 
@@ -426,7 +441,7 @@ services:
       - mysql_data:/var/lib/mysql # Garante que os dados sejam persistentes
 
 volumes:
-  mysql_data: 
+  mysql_data:
 ```
 
 ### 6.3. Rodar o docker-compose
@@ -435,11 +450,10 @@ volumes:
   sudo docker-compose up -d
 ```
 
-
 ## 7. VPN
 
-escrever um texto aqui que explique vpn
-Na EC2 da AWS chamada loadbalance será instalada a VPN.
+Para garantir a segurança na comunicação entre os servidores, foi configurada uma VPN (Rede Privada Virtual). A VPN cria um túnel criptografado entre os dispositivos conectados, permitindo o envio de dados de forma segura mesmo em redes públicas.
+Neste projeto, a configuração foi feita utilizando OpenVPN na instância EC2 da AWS chamada loadbalance, que atua como o servidor VPN. A seguir estão as etapas para instalação e configuração.
 
 ### 7.1. Instalar VPN
 
@@ -448,29 +462,32 @@ Na EC2 da AWS chamada loadbalance será instalada a VPN.
   sudo apt install openvpn
 ```
 
-### 7.2. Configurar arquivos VPN 
+### 7.2. Configurar arquivos VPN
 
-- Entrar na pasta cd /etc/openvpn.
-- Deletar as pastas client e server.
+- Entrar na pasta openvpn.
+
+```cmd
+  cd /etc/openvpn
+```
+
+- Deletar as pastas padrão client e server.
 
 ```cmd
   rm -r client
   rm -r server
 ```
-- Criar um arquivo para configurar a VPN.
+
+- Criar um arquivo para configuração do servidor.
 
 ```cmd
   sudo nano server1.conf
 ```
 
 - Inserir as seguintes informações no arquivo `server1.conf`
-- IP do servidor: 192.168.0.100.
-- IP do cliente: 192.168.0.200.
-- IP Público onde está o Load Balance 3.89.212.241.
 
 ```cmd
-  ifconfig 192.168.0.100 192.168.0.200 # IP do servidor / IP do cliente
-  remote 3.89.212.241
+  ifconfig 192.168.0.100 192.168.0.200 # IP do servidor e IP do cliente
+  remote 3.89.212.241 # IP público do Load Balance
   port 1194 # Porta do openvpn (pode ser qualquer outra)
   dev tun
   proto tcp-server
@@ -483,21 +500,17 @@ Na EC2 da AWS chamada loadbalance será instalada a VPN.
   keepalive 10 120
 ```
 
-- Fazer uma cópia do arquivo `server1.conf` que está configuração para o servidor e modificar para o lado do cliente.
+- Copiar o arquivo `server1.conf` para criar a configuração do cliente.
 
 ```cmd
   cat server1.conf > client1.conf
 ```
 
-- Configurar o arquivo `client1.conf` para o lado do cliente.
-- IP do servidor: 192.168.0.100.
-- IP do cliente: 192.168.0.200.
-- IP Público onde está o Load Balance 3.89.212.241.
-
+- Modificar o arquivo `client1.conf` para refletir a configuração do cliente.
 
 ```cmd
-  ifconfig 192.168.0.200 192.168.0.100 # IP do cliente / IP do servidor
-  remote 3.89.212.241
+  ifconfig 192.168.0.200 192.168.0.100 # IP do cliente e IP do servidor
+  remote 3.89.212.241 # IP público do Load Balance
   port 1194 # Porta do openvpn (pode ser qualquer outra)
   dev tun
   proto tcp-client
@@ -510,40 +523,48 @@ Na EC2 da AWS chamada loadbalance será instalada a VPN.
   keepalive 10 120
 ```
 
-### 7.3. Criando Chave Criptografada VPN
+### 7.3. Criar chave criptografada
 
-- Entrar na pasta cd /etc/openvpn.
-- Criando chave VPN com nome chavevpn.
+- Entrar na pasta openvpn.
+
+```cmd
+  cd /etc/openvpn
+```
+
+- Criar a chave VPN com o nome chavevpn
 
 ```cmd
   openvpn --genkey --secret chavevpn
 ```
 
-- Liberar acesso de escrita e leitura para todos os usuários.
-
+- Garantir permissões de leitura e escrita para todos os usuários.
 
 ```cmd
   chmod 777 chavevpn
   chmod 777 client1.conf
 ```
 
-- Na AWS, ir na área onde estão as EC2, clicar na loadbalance.
-- Clicar em Security, Security Groups, Launch e Security-group id.
-- Adicionar nova porta de acesso.
-- Selecionar Custom TCP, em Port Range colocar 1194, selecionar 0.0.0.0/00
+### 7.4. Configurar segurança na AWS
 
-### 7.4. Fazer o download da chavevpn e do arquivo client1.conf para a máquina do cliente
+- Acessar a instância EC2 na AWS.
+- Em Security, adicionar uma regra ao grupo de segurança:
+  - Tipo: Custom TCP
+  - Porta: 1194
+  - Origem: 0.0.0.0/0
 
-```cmd
-  scp -i <Aquivo .pem> ubuntu@123.123.123.123:/caminho/para/chavevpn.
-  scp -i <Aquivo .pem> ubuntu@123.123.123.123:/caminho/para/client1.conf.
-```
+### 7.5. Transferir arquivos para o cliente
 
-### 7.5. Inicie o servidor do VPN:
+- Fazer o download da chaveVPN e do arquivo de configuração do client1.conf.
 
 ```cmd
-  openvpn --config server.conf
+  scp -i <arquivo.pem> ubuntu@3.89.212.241:/etc/openvpn/chavevpn /caminho/local/
+  scp -i <arquivo.pem> ubuntu@3.89.212.241:/etc/openvpn/client1.conf /caminho/local/
 ```
 
+### 7.6. Iniciar o servidor VPN
 
+- No servidor, iniciar o OpenVPN com o arquivo de configuração.
 
+```cmd
+  openvpn --config server1.conf
+```
