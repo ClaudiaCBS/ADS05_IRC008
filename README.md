@@ -41,6 +41,15 @@ Utilizar o Docker para criar os servidores web e o banco de dados, garantindo po
 |    03     |       22/11/2024 - 26/11/2024        | :white_check_mark: Concluído      |
 |    04     | 06/12/2024 - 10/12/2024 e 13/12/2024 | :construction: Em desenvolvimento |
 
+<br>
+
+Abaixo, segue um print do site Trello, onde mostro como me organizei para realizar as entregas dentro dos prazos estipulados pelo professor. As entregas deveriam incluir Load Balancer, Proxy Reverso, Banco de Dados, VPN e Docker, mas cada aluno pode escolher quais itens entregar e em qual sequência. Usei o Trello para planejar e garantir que todas as entregas fossem feitas dentro do prazo.
+
+<br>
+
+<p align="center">
+      <img src="/docs/20241128_Trello.png" alt="Trello">
+
 # :rocket: Tecnologias Utilizadas
 
 Para o desenvolvimento deste projeto foram utilizadas as seguintes ferramentas e tecnologias:
